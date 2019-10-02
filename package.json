@@ -1,0 +1,20 @@
+{
+  "name": "stereol",
+  "version": "0.1.0",
+  "description": "A simple library to manipulate .stl files on both NodeJS and web.",
+  "author": "kaelhem@gmail.com",
+  "license": "MIT",
+  "source": "src/index.js",
+  "main": "dist/stereol.js",
+  "umd:main": "dist/stereol.umd.js",
+  "unpkg": "dist/stereol.umd.js",
+  "module": "dist/stereol.m.js",
+  "scripts": {
+    "build": "rimraf dist && microbundle --external all",
+    "dev": "microbundle watch"
+  },
+  "devDependencies": {
+    "microbundle": "^0.12.0-next.6",
+    "rimraf": "^3.0.0"
+  }
+}

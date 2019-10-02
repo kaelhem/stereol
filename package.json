@@ -1,6 +1,6 @@
 {
   "name": "stereol",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple library to manipulate .stl files on both NodeJS and web.",
   "author": "kaelhem@gmail.com",
   "license": "MIT",

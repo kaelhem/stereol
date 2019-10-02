@@ -1,4 +1,5 @@
 import Colors from './colors'
+import { computeNormal } from './stl-utils'
 
 let IS_NODEJS = undefined
 try {

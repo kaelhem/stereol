@@ -1,3 +1,5 @@
+import { computeNormal } from './stl-utils'
+
 const trim = (a) => {
   let nullTerm = a.indexOf('\u0000')
   if (nullTerm > -1) {

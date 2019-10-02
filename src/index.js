@@ -1,4 +1,3 @@
-import { computeNormal } from './stl-utils'
 import { toASCII, fromASCII } from './ascii-stl'
 import { toBinary, fromBinary } from './binary-stl'
 

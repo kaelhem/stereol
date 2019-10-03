@@ -1,20 +1,31 @@
 {
-  "name": "stereol",
-  "version": "0.1.1",
-  "description": "A simple library to manipulate .stl files on both NodeJS and web.",
-  "author": "kaelhem@gmail.com",
-  "license": "MIT",
-  "source": "src/index.js",
-  "main": "dist/stereol.js",
-  "umd:main": "dist/stereol.umd.js",
-  "unpkg": "dist/stereol.umd.js",
-  "module": "dist/stereol.m.js",
-  "scripts": {
-    "build": "rimraf dist && microbundle --external all",
-    "dev": "microbundle watch"
+  "name": "stereol-demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-scripts": "3.2.0"
   },
-  "devDependencies": {
-    "microbundle": "^0.12.0-next.6",
-    "rimraf": "^3.0.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

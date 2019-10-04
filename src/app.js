@@ -1,22 +1,15 @@
 import React from 'react'
+import Header from './containers/header'
+import DiffView from './containers/diff-view'
 import './app.css'
 
-const App = () => (
-  <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="app-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-)
+const App = () => {
+  return (
+    <div className="app">
+      <Header />
+      <DiffView />
+    </div>
+  )
+}
 
 export default App

@@ -1,6 +1,6 @@
 import React from 'react'
 import ContentLayout from 'components/content-layout'
-import StlView from 'components/stl-viewer'
+import StlView from 'components/stl-view'
 
 const DiffView = () => (
   <ContentLayout render={({width, height}) => (

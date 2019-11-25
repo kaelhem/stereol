@@ -4,6 +4,7 @@ import STLViewer from 'stl-viewer'
 import stereol from 'stereol'
 import { saveAs } from 'file-saver'
 import { Button, Label } from 'semantic-ui-react'
+import ColorPicker from './color-picker'
 
 const StlView = ({ width, height }) => {
 
@@ -16,18 +17,62 @@ const StlView = ({ width, height }) => {
   }
 
   const importStl = (data) => {
-    setStlData(data)
-    setStereolData(stereol.importStl(data))
-    console.log(stereolData)
+    const { facets, description, color, material = null } = stereol.importStl(data)
+    console.log(color)
+    setStereolData({
+      facets,
+      description,
+      color,
+      material
+    })
+    const exported = stereol.exportStl(facets, {
+      binary: true,
+      description,
+      color
+    })
+    console.log(facets, color)
+    setStlData(exported.buffer)
   }
 
   const exportStl = () => {
     const data = stereol.exportStl(stereolData.facets, {
       binary: true,
-      description: 'Exported with Stereol!'
+      description: 'Exported with Stereol!',
+      color: stereolData.color,
+      material: stereolData.material
     })
     const blob = new Blob([data])
     saveAs(blob, 'stereol-export.stl')
+  }
+
+  const getColor = () => {
+    return stereolData && stereolData.color ? {
+      r: stereolData.color[0],
+      g: stereolData.color[1],
+      b: stereolData.color[2]
+    } : null
+  }
+
+  const updateColor = (colorInfo) => {
+    const { r, g, b } = colorInfo.rgb
+    const color = [r, g, b, 255]
+    const { facets, decription, material } = stereolData
+    setStereolData({
+      facets,
+      decription,
+      color,
+      material
+    })
+    setTimeout(() => {
+      const exported = stereol.exportStl(stereolData.facets, {
+        binary: true,
+        description: stereolData.description,
+        color,
+        material
+      })
+      setStlData(null)
+      setStlData(exported.buffer)
+    }, 1)
   }
 
   return (
@@ -40,6 +85,7 @@ const StlView = ({ width, height }) => {
               width={ width }
               height={ height }
               backgroundColor='#e2e2e2'
+              lights={[[0.5, 1, -1], [1, 1, 1]]}
               rotate={false}
               orbitControls={true}
               cameraX={50}
@@ -48,6 +94,7 @@ const StlView = ({ width, height }) => {
             />
           )}
           <div style={{ position: 'absolute', top: 10, right: 10 }}>
+            <ColorPicker color={ getColor() } onChange={ updateColor } />
             <Button onClick={ exportStl } circular style={{ backgroundColor: '#dd0dd0', color: '#fff' }} icon='download' />
             <Button onClick={ clear } circular style={{ backgroundColor: '#dd0dd0', color: '#fff' }} icon='trash' />
           </div>

@@ -63,3 +63,12 @@
   color: #fff;
   margin: 2px;
 }
+
+.twitter-picker {
+  width: 256px !important;
+  box-shadow: none !important;
+}
+
+.twitter-picker > div {
+  padding: 4px 0 0 4px !important;
+}

@@ -2,7 +2,6 @@
   "name": "stereol-demo",
   "version": "0.1.0",
   "scripts": {
-    "postbuild": "react-snap",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -19,12 +18,9 @@
     "react-sizes": "^2.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.1",
-    "stereol": "file:../library",
+    "stereol": "^0.1.1",
     "stl-viewer": "git+https://github.com/kaelhem/react-stl-viewer#master",
     "styled-components": "^4.4.0"
-  },
-  "devDependencies": {
-    "react-snap": "^1.23.0"
   },
   "eslintConfig": {
     "extends": "react-app"

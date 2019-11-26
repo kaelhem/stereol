@@ -2,6 +2,14 @@ const limited = (value, max = 0xFF) => Math.max(0, Math.min(max, parseInt(value,
 const facetColorPart = (part) => limited(part, 31).toString(2).padStart(5, '0')
 const stlColorPart = (part) => limited(part).toString(2).padStart(8, '0')
 
+// convert a 24 bit binary color to 0..255 R,G,B
+const binToRGB = (bin) => {
+  var r = bin >> 16
+  var g = bin >> 8 & 0xFF
+  var b = bin & 0xFF
+  return [r,g,b]
+}
+
 export default {
   /*
   Computes a 16 bits BGR color with this format: 
@@ -14,4 +22,6 @@ export default {
 
   /* Computes a 32 bits RGBA color */
   getStlColor: ([r, g, b, a]) => Number(`0b${ stlColorPart(r) }${ stlColorPart(g) }${ stlColorPart(b) }${ stlColorPart(a) }`),
+
+  binToRGB
 }

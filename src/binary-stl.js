@@ -55,9 +55,11 @@ export const toBinary = (facets, description, color, material) => {
   const size = 84 + count * 12 * 4 + count * 2
   const { writeBuffer, getBuffer } = createBuffer(size)
   writeBuffer('string', description)
+  console.log('color=', color)
   if (color) {
     writeBuffer('string', ' COLOR=', 47)
     const [r, g, b, a] = color
+    console.log(r, g, b, a)
     writeBuffer('uint8', r, 54)
     writeBuffer('uint8', g, 55)
     writeBuffer('uint8', b, 56)
@@ -89,8 +91,8 @@ export const toBinary = (facets, description, color, material) => {
       write(vert[1])
       write(vert[2])
     }
-    const facetColor = facet.color ? Colors.getFacetColor(facet.color) : 0
-    writeBuffer('uint16', facetColor, offset)
+    //const facetColor = facet.color ? Colors.getFacetColor(facet.color) : 0
+    writeBuffer('uint16', facet.color || 0, offset)
     offset += 2
   }
   return getBuffer()
@@ -105,9 +107,11 @@ export const fromBinary = (data) => {
     header.push(readBuffer(buffer, 'uint8', i))
   }
   const description = String.fromCharCode(...header)
+  console.log(description)
 
   // retrieve main color
   const colorIndex = description.indexOf(' COLOR=')
+  console.log('colorIndex=', colorIndex)
   let color = null
   if (colorIndex !== -1) {
     color = [
@@ -117,6 +121,8 @@ export const fromBinary = (data) => {
       readBuffer(buffer, 'uint8', colorIndex + 10)
     ]
   }
+
+  console.log('color retrived=', color)
 
   // retrieve material
   const materialIndex = description.indexOf('MATERIAL=')
